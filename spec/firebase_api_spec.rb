@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe "Firebase" do
+describe "Firebase Api" do
 
   let (:data) do
     { 'name' => 'Oscar' }
   end
 
   before do
-    @firebase = Firebase.new('https://test.firebaseio.com')
+    @firebase = Firebase::Api.new('https://test.firebaseio.com')
     @req = @firebase.request
   end
 
@@ -26,25 +26,25 @@ describe "Firebase" do
 
     it "return nil if response body contains 'null'" do
       mock_response = double(:body => 'null')
-      response = Firebase::Response.new(mock_response)
+      response = Firebase::Api::Response.new(mock_response)
       expect { response.body }.to_not raise_error
     end
 
     it "return true if response body contains 'true'" do
       mock_response = double(:body => 'true')
-      response = Firebase::Response.new(mock_response)
+      response = Firebase::Api::Response.new(mock_response)
       response.body.should eq(true)
     end
 
     it "return false if response body contains 'false'" do
       mock_response = double(:body => 'false')
-      response = Firebase::Response.new(mock_response)
+      response = Firebase::Api::Response.new(mock_response)
       response.body.should eq(false)
     end
 
     it "raises JSON::ParserError if response body contains invalid JSON" do
       mock_response = double(:body => '{"this is wrong"')
-      response = Firebase::Response.new(mock_response)
+      response = Firebase::Api::Response.new(mock_response)
       expect { response.body }.to raise_error
     end
   end
@@ -72,7 +72,7 @@ describe "Firebase" do
 
   describe "options" do
     it "passes custom options" do
-      firebase = Firebase.new('https://test.firebaseio.com', 'secret')
+      firebase = Firebase::Api.new('https://test.firebaseio.com', 'secret')
       firebase.request.should_receive(:get).with('todos', {:auth => 'secret', :foo => 'bar'})
       firebase.get('todos', :foo => 'bar')
     end
