@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = "firebase"
-  s.version = "0.1.6"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Oscar Del Ben"]
-  s.date = "2013-11-23"
+  s.date = "2014-01-12"
   s.description = "Firebase wrapper for Ruby"
   s.email = "info@oscardelben.com"
   s.extra_rdoc_files = [
@@ -28,10 +28,11 @@ Gem::Specification.new do |s|
     "VERSION",
     "firebase.gemspec",
     "lib/firebase.rb",
-    "lib/firebase/request.rb",
-    "lib/firebase/response.rb",
-    "spec/firebase_request_spec.rb",
-    "spec/firebase_spec.rb",
+    "lib/firebase/api.rb",
+    "lib/firebase/api/request.rb",
+    "lib/firebase/api/response.rb",
+    "spec/firebase_api_request_spec.rb",
+    "spec/firebase_api_spec.rb",
     "spec/spec_helper.rb"
   ]
   s.homepage = "http://github.com/oscardelben/firebase-ruby"
